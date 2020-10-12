@@ -1,0 +1,6 @@
+				.globalzp ptr1
+				.globalzp tmpstack
+				.globalzp _vstup
+				.globalzp _desitky
+				.globalzp _jednotky
+				.globalzp	_spi_write_data
