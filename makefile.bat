@@ -1,7 +1,11 @@
-for %%a in (".\src\*.asm") do (
-ca65.exe -o .\output\%%~na.o .\%%a
-)
-cd .\output
-cl65.exe main.o acia.o zeropage.o -C ..\config\APP_RAM_DISK.cfg -o ramdisk.bin
-cl65.exe main.o acia.o zeropage.o -C ..\config\APP.cfg -o ROM.bin
-cl65.exe main.o acia.o zeropage.o -C ..\config\bank_ram_disk.cfg -o BANK.bin
+del .\output\*.*
+cd .\src
+cc65 -t none -O --cpu 6502 main.c
+ca65 --cpu 6502 main.s -o ..\output\main.o
+ca65 --cpu 6502 spi.asm -o ..\output\spi.o
+ca65 --cpu 6502 vectors.asm -o ..\output\vectors.o
+ca65 --cpu 6502 acia.s -o ..\output\acia.o
+
+
+cd ..\output
+ld65 -C ..\config\APP_RAM_DISK.cfg -m main.map vectors.o main.o spi.o acia.o ..\library\p65.lib -o ..\output\RAM.bin

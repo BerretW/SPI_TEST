@@ -1,5 +1,4 @@
-				.setcpu "65C02"
-				.include "io.inc65"
+				.setcpu "6502"
 				.include "zeropage.inc65"
 
 				.import _acia_init
@@ -27,6 +26,8 @@ irq:             RTI
 
                 .segment "STARTUP"
 main:
+				JSR popa
+
 				JSR _acia_init
 
 
@@ -69,8 +70,11 @@ _SPI_End:						PHA
 										RTS
 
 
-_SPI_Write:         STA SPI_DATA
+_SPI_Write:         PHA
+										LDA _spi_write_data
+										STA SPI_DATA
 										JSR _spi_delay
+										PLA
                     RTS
 
 
