@@ -23,6 +23,7 @@ _spi_write_to:      STA tmp1
 										LDA #$7
 										STA SPI_CSSEL
 										LDA tmp2
+										ADC #$80
 										JSR spi_write
 										LDA tmp3
 										JSR spi_write

@@ -38,30 +38,35 @@ _c:
 
 .segment	"CODE"
 
+	ldx     #$28
+	lda     #$0E
+	jsr     pushax
+	lda     #$15
+	jsr     _spi_write_to
+	ldx     #$28
+	lda     #$0F
+	jsr     pushax
+	lda     #$F0
+	jsr     _spi_write_to
 L0002:	jsr     _acia_getc
 	sta     _c
 	cmp     #$08
 	beq     L0005
 	inc     _i
-	bne     L000B
+	bne     L0008
 	inc     _i+1
-	jmp     L000B
+	jmp     L0008
 L0005:	lda     _i
 	ora     _i+1
-	beq     L000B
+	beq     L0008
 	lda     _i
 	sec
 	sbc     #$01
 	sta     _i
-	bcs     L000B
+	bcs     L0008
 	dec     _i+1
-L000B:	clc
-	lda     _i
-	pha
-	lda     #$80
-	adc     _i+1
-	tax
-	pla
+L0008:	lda     _i
+	ldx     _i+1
 	jsr     pushax
 	lda     _c
 	jsr     _spi_write_to

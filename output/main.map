@@ -3,28 +3,28 @@ Modules list:
 vectors.o:
     VECTORS           Offs=000000  Size=000006  Align=00001  Fill=0000
 main.o:
-    CODE              Offs=000000  Size=000049  Align=00001  Fill=0000
+    CODE              Offs=000000  Size=00005B  Align=00001  Fill=0000
     BSS               Offs=000000  Size=000001  Align=00001  Fill=0000
     DATA              Offs=000000  Size=000002  Align=00001  Fill=0000
 spi.o:
-    CODE              Offs=000049  Size=000037  Align=00001  Fill=0000
+    CODE              Offs=00005B  Size=000039  Align=00001  Fill=0000
 acia.o:
-    CODE              Offs=000080  Size=000048  Align=00001  Fill=0000
+    CODE              Offs=000094  Size=000048  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000001  Align=00001  Fill=0000
 ..\library\p65.lib(condes.o):
-    CODE              Offs=0000C8  Size=00000C  Align=00001  Fill=0000
+    CODE              Offs=0000DC  Size=00000C  Align=00001  Fill=0000
     DATA              Offs=000002  Size=000025  Align=00001  Fill=0000
     ONCE              Offs=000000  Size=00000C  Align=00001  Fill=0000
 ..\library\p65.lib(copydata.o):
-    CODE              Offs=0000D4  Size=00002D  Align=00001  Fill=0000
+    CODE              Offs=0000E8  Size=00002D  Align=00001  Fill=0000
 ..\library\p65.lib(crt0.o):
     STARTUP           Offs=000000  Size=00001C  Align=00001  Fill=0000
 ..\library\p65.lib(incsp2.o):
-    CODE              Offs=000101  Size=000015  Align=00001  Fill=0000
+    CODE              Offs=000115  Size=000015  Align=00001  Fill=0000
 ..\library\p65.lib(pushax.o):
-    CODE              Offs=000116  Size=00001A  Align=00001  Fill=0000
+    CODE              Offs=00012A  Size=00001A  Align=00001  Fill=0000
 ..\library\p65.lib(zerobss.o):
-    CODE              Offs=000130  Size=000023  Align=00001  Fill=0000
+    CODE              Offs=000144  Size=000023  Align=00001  Fill=0000
 ..\library\p65.lib(zeropage.o):
     ZEROPAGE          Offs=000001  Size=00001A  Align=00001  Fill=0000
 
@@ -38,7 +38,7 @@ DATA                  000200  000226  000027  00001
 BSS                   000227  000227  000001  00001
 STARTUP               006027  006042  00001C  00001
 ONCE                  006043  00604E  00000C  00001
-CODE                  00604F  0061A1  000153  00001
+CODE                  00604F  0061B5  000167  00001
 VECTORS               007FFA  007FFF  000006  00001
 
 
@@ -50,15 +50,15 @@ __DATA_LOAD__             006000 RLA    __DATA_RUN__              000200 RLA
 __DATA_SIZE__             000027 REA    __DESTRUCTOR_COUNT__      000000 REA    
 __DESTRUCTOR_TABLE__      006043 RLA    __RAM_SIZE__              005DFF REA    
 __RAM_START__             000200 RLA    __STARTUP__               000001 REA    
-_acia_getc                00610C RLA    _acia_putc                0060DC RLA    
+_acia_getc                006120 RLA    _acia_putc                0060F0 RLA    
 _init                     006027 RLA    _main                     00604F RLA    
-_spi_write_to             006098 RLA    copydata                  006123 RLA    
-donelib                   006117 RLA    initlib                   006043 RLA    
-popax                     006150 RLA    ptr1                      000009 RLZ    
-ptr2                      00000B RLZ    pushax                    006169 RLA    
+_spi_write_to             0060AA RLA    copydata                  006137 RLA    
+donelib                   00612B RLA    initlib                   006043 RLA    
+popax                     006164 RLA    ptr1                      000009 RLZ    
+ptr2                      00000B RLZ    pushax                    00617D RLA    
 sp                        000001 RLZ    tmp1                      000011 RLZ    
 tmp2                      000012 RLZ    tmp3                      000013 RLZ    
-zerobss                   00617F RLA    
+zerobss                   006193 RLA    
 
 
 Exports list by value:
@@ -73,11 +73,11 @@ __DATA_RUN__              000200 RLA    __BSS_RUN__               000227 RLA
 __RAM_SIZE__              005DFF REA    __DATA_LOAD__             006000 RLA    
 _init                     006027 RLA    initlib                   006043 RLA    
 __DESTRUCTOR_TABLE__      006043 RLA    __CONSTRUCTOR_TABLE__     006043 RLA    
-_main                     00604F RLA    _spi_write_to             006098 RLA    
-_acia_putc                0060DC RLA    _acia_getc                00610C RLA    
-donelib                   006117 RLA    copydata                  006123 RLA    
-popax                     006150 RLA    pushax                    006169 RLA    
-zerobss                   00617F RLA    
+_main                     00604F RLA    _spi_write_to             0060AA RLA    
+_acia_putc                0060F0 RLA    _acia_getc                006120 RLA    
+donelib                   00612B RLA    copydata                  006137 RLA    
+popax                     006164 RLA    pushax                    00617D RLA    
+zerobss                   006193 RLA    
 
 
 Imports list:
@@ -131,7 +131,7 @@ ptr1 (zeropage.o):
 ptr2 (zeropage.o):
     copydata.o                common/copydata.s(9)
 pushax (pushax.o):
-    main.o                    main.s(73)
+    main.o                    main.s(78)
 sp (zeropage.o):
     pushax.o                  runtime/pushax.s(8)
     incsp2.o                  runtime/incsp2.s(8)
